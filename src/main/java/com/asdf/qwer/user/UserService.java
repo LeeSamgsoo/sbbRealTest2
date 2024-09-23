@@ -17,4 +17,8 @@ public class UserService {
         user.setNickname(nickname);
         this.userRepository.save(user);
     }
+
+    public SiteUser get(String username) {
+        return this.userRepository.findByusername(username).orElse(null);
+    }
 }

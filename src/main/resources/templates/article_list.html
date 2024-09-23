@@ -6,7 +6,8 @@
         </div>
         <div>
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="kw" th:value="${param.kw}">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="kw"
+                       th:value="${param.kw}">
                 <button class="btn btn-outline-success" type="submit">검색</button>
             </form>
         </div>
@@ -39,7 +40,8 @@
             <li class="page-item" th:each="page : ${#numbers.sequence(0, paging.totalPages-1)}"
                 th:classappend="${paging.number == page} ? 'active'"
                 th:if="${paging.number-5 <= page and page <= paging.number+5}">
-                <a class="page-link" th:href="@{|${kwBase}&page=${page}|}"></a>
+                <a class="page-link" th:href="@{|${kwBase}&page=${page}|}"
+                   th:text="${page+1}"></a>
             </li>
             <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
                 <a class="page-link" th:href="@{|${kwBase}&page=${paging.number+1}|}">Next</a>
