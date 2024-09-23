@@ -1,5 +1,29 @@
 <html layout:decorate="~{layout}">
 <div class="container my-3" layout:fragment="content">
-
+    <div class="container my-2">
+        <div class="mb-3">
+            <label for="title" class="form-label">제목</label>
+            <div class="form-control" id="title" th:text="${article.title}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">내용</label>
+            <div class="form-control" id="content">
+                <div th:text="${article.content}"></div>
+                <span class="badge text-bg-light" th:if="${article.modifyDate != null}">
+                    <div>modified at</div>
+                    <div th:text="${#temporals.format(article.modifyDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </span>
+                <span class="badge text-bg-light">
+                    <div th:if="${article.author != null}" th:text="${article.author.username}"></div>
+                    <div th:text="${#temporals.format(article.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+                </span>
+            </div>
+        </div>
+        <div sec:authorize="isAuthenticated()"
+             th:if="${article.author != null and article.author.username == #authentication.getPrincipal().getUsername()}">
+            <a class="btn btn-primary" th:href="@{|/article/modify/${article.id}|}">수정</a>
+            <a class="btn btn-primary" th:href="@{|/article/delete/${article.id}|}">삭제</a>
+        </div>
+    </div>
 </div>
 </html>
