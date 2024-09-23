@@ -62,5 +62,34 @@ public class ArticleController {
         return "redirect:/article/list";
     }
 
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/modify/{id}")
+    public String modify(ArticleForm articleForm, @PathVariable(value = "id") Integer id) {
+        Article article = this.articleService.get(id);
+        if (article == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "게시글이 없습니다.");
+        }
+        articleForm.setTitle(article.getTitle());
+        articleForm.setContent(article.getContent());
+        return "article_form";
+    }
 
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/modify/{id}")
+    public String modify(@Valid ArticleForm articleForm, BindingResult bindingResult,
+                         Principal principal, @PathVariable(value = "id") Integer id) {
+        if (bindingResult.hasErrors()) {
+            return "article_form";
+        }
+        SiteUser user = this.userService.get(principal.getName());
+        Article article = this.articleService.get(id);
+        if (article == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "게시글이 없습니다.");
+        }
+        if (user == null || !article.getAuthor().getUsername().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다");
+        }
+        this.articleService.create(articleForm.getTitle(), articleForm.getContent(), user);
+        return "redirect:/article/list";
+    }
 }
