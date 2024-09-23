@@ -1,5 +1,28 @@
 <html layout:decorate="~{layout}">
 <div class="container my-3" layout:fragment="content">
-
+    <form th:action="@{/user/signup}" th:object="${userCreateForm}" method="post">
+        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}">
+                <div th:text="${err}"></div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">아이디</label>
+            <input type="text" class="form-control" th:field="*{username}">
+        </div>
+        <div class="mb-3">
+            <label for="nickname" class="form-label">닉네임</label>
+            <input type="text" class="form-control" th:field="*{nickname}">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">비밀번호</label>
+            <input type="password" class="form-control" th:field="*{password}">
+        </div>
+        <div class="mb-3">
+            <label for="passwordCheck" class="form-label">비밀번호 확인</label>
+            <input type="password" class="form-control" th:field="*{passwordCheck}">
+        </div>
+        <button type="submit" class="btn btn-primary">회원가입</button>
+    </form>
 </div>
 </html>
