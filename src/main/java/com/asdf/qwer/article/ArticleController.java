@@ -5,7 +5,6 @@ import com.asdf.qwer.user.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,8 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -66,38 +63,6 @@ public class ArticleController {
         model.addAttribute("article", article);
         return "article_detail";
     }
-    /*
-    @GetMapping("/viewPostWithCookie/{postId}")
-public Map<String, Object> viewPostWithCookie(@PathVariable Long postId, HttpServletRequest request, HttpServletResponse response) {
-    Map<String, Object> result = new HashMap<>();
-    String cookieName = "viewedPost_" + postId;
-    boolean alreadyViewed = false;
-
-    // 요청에 있는 쿠키 확인
-    if (request.getCookies() != null) {
-        for (Cookie cookie : request.getCookies()) {
-            if (cookie.getName().equals(cookieName)) {
-                alreadyViewed = true;
-                break;
-            }
-        }
-    }
-
-    // 조회한 적이 없다면 조회수 증가 및 쿠키 설정
-    if (!alreadyViewed) {
-        postViews.put(postId, postViews.getOrDefault(postId, 0) + 1);
-
-        // 쿠키에 조회 기록 추가 (1시간 유지)
-        Cookie newCookie = new Cookie(cookieName, "true");
-        newCookie.setMaxAge(60 * 60); // 1시간
-        response.addCookie(newCookie);
-    }
-
-    result.put("views", postViews.get(postId));
-    return result;
-}
-    */
-
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")

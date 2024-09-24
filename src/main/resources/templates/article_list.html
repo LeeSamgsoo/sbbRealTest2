@@ -26,7 +26,8 @@
         <tr th:each="article, loop : ${paging}">
             <th scope="row" th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></th>
             <td>
-                <a th:href="@{|/article/detail/${article.id}|}" th:text="${article.title}" id="viewBtn" data-article-id="${article.id}"></a>
+                <a th:href="@{|/article/detail/${article.id}|}" th:text="${article.title}" id="viewBtn"
+                   data-article-id="${article.id}"></a>
             </td>
             <td th:if="${article.author != null}" th:text="${article.author.username}"></td>
             <td th:text="${#temporals.format(article.createDate, 'yyyy-MM-dd HH:mm')}"></td>
