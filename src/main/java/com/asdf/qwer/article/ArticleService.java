@@ -47,4 +47,13 @@ public class ArticleService {
     public void delete(Article article) {
         this.articleRepository.delete(article);
     }
+
+    public void viewing(Article article) {
+        if (article.getViews() == null) {
+            article.setViews(1L);
+        } else {
+            article.setViews(article.getViews() + 1);
+        }
+        this.articleRepository.save(article);
+    }
 }

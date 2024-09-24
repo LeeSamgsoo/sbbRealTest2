@@ -26,6 +26,8 @@ public class Article {
 
     private LocalDateTime modifyDate;
 
+    private Long views;
+
     @ManyToOne
     private SiteUser author;
 }
