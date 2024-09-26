@@ -19,11 +19,30 @@
                 </span>
             </div>
         </div>
-        <div sec:authorize="isAuthenticated()"
-             th:if="${article.author != null and article.author.username == #authentication.getPrincipal().getUsername()}">
-            <a class="btn btn-primary" th:href="@{|/article/modify/${article.id}|}">수정</a>
-            <a class="btn btn-primary" th:href="@{|/article/delete/${article.id}|}">삭제</a>
+        <div class="row my-3">
+            <div class="col-2">
+                <a class="btn btn-outline-secondary" th:href="@{|/article/votes/${article.id}|}" id="recommend"
+                   data-article-id="${article.id}">추천
+                    <span class="badge rounded-pill text-bg-success"
+                          th:text="${(article.votes != null) ? #lists.size(article.votes) : 0}"></span></a>
+            </div>
+            <div class="col-2" sec:authorize="isAuthenticated()"
+                 th:if="${article.author != null and article.author.username == #authentication.getPrincipal().getUsername()}">
+                <a class="btn btn-primary" th:href="@{|/article/modify/${article.id}|}">수정</a>
+                <a class="btn btn-primary" th:href="@{|/article/delete/${article.id}|}">삭제</a>
+            </div>
         </div>
     </div>
 </div>
 </html>
+<script th:inline="javascript">
+    $(document).ready(function() {
+        $('#recommend').click(function() {
+            var postId =  $(this).data('article-id');
+            $.ajax({
+                url: "/article/votes/" + postId,  // Ajax 요청 시 postId 사용
+                type: "GET",
+            });
+        });
+    });
+</script>

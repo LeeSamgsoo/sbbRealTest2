@@ -1,5 +1,6 @@
 package com.asdf.qwer.article;
 
+import com.asdf.qwer.user.SiteUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -65,6 +65,15 @@ public class ArticleController {
     }
 
     @PreAuthorize("isAuthenticated()")
+    @GetMapping("/votes/{id}")
+    public String votes(@PathVariable(value = "id") Integer id, Principal principal) {
+        Article article = this.articleService.get(id);
+        SiteUser user = this.userService.get(principal.getName());
+        this.articleService.vote(article, user);
+        return "redirect:/article/detail/" + id;
+    }
+
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
     public String create(ArticleForm articleForm) {
         return "article_form";

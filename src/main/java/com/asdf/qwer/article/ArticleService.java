@@ -2,6 +2,7 @@ package com.asdf.qwer.article;
 
 import com.asdf.qwer.user.SiteUser;
 import lombok.RequiredArgsConstructor;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -54,6 +55,11 @@ public class ArticleService {
         } else {
             article.setViews(article.getViews() + 1);
         }
+        this.articleRepository.save(article);
+    }
+
+    public void vote(Article article, SiteUser user) {
+        article.getVotes().add(user);
         this.articleRepository.save(article);
     }
 }
