@@ -1,3 +1,16 @@
+## 조회수, 추천
+### article_list
+- ![image](https://github.com/user-attachments/assets/467111f6-4c1a-43b5-9b51-092245fd21c7)
+- ajax 코드
+- ![image](https://github.com/user-attachments/assets/3bcedc9b-850e-46b1-b7b4-dbce6a8d05e9)
+
+### article_detail
+- ![image](https://github.com/user-attachments/assets/b0081f91-6d30-433a-91c7-436170158754)
+- ajax 코드
+- ![image](https://github.com/user-attachments/assets/20f27555-f0db-4345-be9a-1898b6dd9ae8)
+
+
+
 ## 1차 요구사항 구현
 - [x] 유저가 루트 url로 접속시에 게시글 리스트 페이지(http://주소:포트/article/list)가 나온다.
 - [x] 리스트 페이지에서는 등록 버튼이 있고 버튼을 누르면 http://주소:포트/article/create 경로로 이동하고 등록 폼이 나온다.
