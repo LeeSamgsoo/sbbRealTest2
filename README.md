@@ -1,5 +1,6 @@
 ## 조회수, 추천
 ### article_list
+- ![녹화_2024_10_31_19_45_35_839](https://github.com/user-attachments/assets/1783ebe9-b2d4-4c14-a53c-95d0dfb4bd43)
 - ![image](https://github.com/user-attachments/assets/467111f6-4c1a-43b5-9b51-092245fd21c7)
 - ajax 코드
 - ![image](https://github.com/user-attachments/assets/3bcedc9b-850e-46b1-b7b4-dbce6a8d05e9)
